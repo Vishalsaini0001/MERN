@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const chalk = require('chalk');
 
 // const URI = "mongodb://localhost:27017/technical";
 const URI = process.env.MONGODB_URI;
@@ -7,9 +8,10 @@ const conectDB = async()=>{
 
     try {
       await mongoose.connect(URI)
-        console.log("MongoDB connected!")
+        
+        console.log(chalk.bgGreenBright('MongoDB connected!'));
     } catch (error) {
-        console.error("MongoDB Conntection failed!")
+        console.error(chalk.bgRed("MongoDB Conntection failed!"))
         process.exit(0);
         
     }
