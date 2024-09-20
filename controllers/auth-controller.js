@@ -26,9 +26,9 @@ const register = async (req, res) => {
       phone,
       password: hash_password,
     });
-    res.json({ CreatedSuccessfully: createduser });
     const token = jwt.sign({ email: createduser.email }, "secret");
-    res.cookie("token", token).json({ Message: createduser });
+    res.cookie("token", token);
+    res.status(200).json({ CreatedSuccessfully: createduser });
   } catch (error) {
     console.log(error);
   }
