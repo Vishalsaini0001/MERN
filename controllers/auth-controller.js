@@ -30,7 +30,7 @@ const register = async (req, res) => {
     res.cookie("token", token);
     res.status(200).json({ CreatedSuccessfully: createduser });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
@@ -49,7 +49,8 @@ const login = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error(error);
+    
+    next(error)
   }
 };
 

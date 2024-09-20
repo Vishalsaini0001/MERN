@@ -6,8 +6,17 @@ const validate = (schema) => async (req, res, next)=>{
     next();
    } catch (err) {
     
-    const msge = err.errors[0].message;
-    res.json({message:msge })
+    const message = "fill the input properly";
+    const extraDetails =  err.errors[0].message;
+    const status = 400;
+    const error = {
+      status,
+      message,
+      extraDetails
+
+    }
+    next(error); 
+
    }
 }
 module.exports = validate;
