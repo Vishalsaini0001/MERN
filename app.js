@@ -10,9 +10,9 @@ const errorhandler = require("./middlewares/error-middleware");
 app.use("/api", router);
 app.use(errorhandler);
 
-const PORT = 3000;
+
 conectDB().then(() => {
-  app.listen(PORT, () => {
+  app.listen(process.env.PORT, () => {
     console.log(chalk.cyan("Server is running..."));
   });
 });
