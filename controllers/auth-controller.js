@@ -39,7 +39,7 @@ const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.json({ message: "Invalid email address" });
+      return res.status(500).json({ message: "Invalid email address" });
     }
     bcrypt.compare(password, user.password, function (err, result) {
       if (!result) {
@@ -49,7 +49,8 @@ const login = async (req, res) => {
       }
     });
   } catch (error) {
-    
+  
+   
     next(error)
   }
 };
