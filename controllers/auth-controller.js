@@ -30,7 +30,7 @@ const register = async (req, res) => {
     res.cookie("token", token);
     res.status(200).json({ CreatedSuccessfully: createduser });
   } catch (error) {
-    next(error);
+    next(error)
   }
 };
 
