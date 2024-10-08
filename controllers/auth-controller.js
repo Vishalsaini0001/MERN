@@ -1,5 +1,6 @@
 const express = require("express");
 const userModel = require("../models/user-model");
+const mssgeModel = require("../models/contact-model")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -55,4 +56,5 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { home, register, login };
+
+module.exports = { home, register, login, contact };
