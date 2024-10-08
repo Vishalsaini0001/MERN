@@ -55,6 +55,19 @@ const login = async (req, res) => {
     next(error)
   }
 };
-
+const contact = async (req,res)=>{
+  try {
+    let {name,email,message} = req.body;
+     const msge =  await mssgeModel.create({
+          name,
+          email,
+          message,
+      })
+  res.json({message: msge})
+  
+  } catch (error) {
+    next(error)
+  }
+  }
 
 module.exports = { home, register, login, contact };
