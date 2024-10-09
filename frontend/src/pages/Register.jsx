@@ -19,7 +19,7 @@ setUser({...user,
 
 }
 const handlesubmit = (e)=>{
- e.preventDefault();
+ e.preventDefault()
  console.log(user)
 
 }
