@@ -66,7 +66,8 @@ const contact = async (req,res)=>{
   res.json({message: msge})
   
   } catch (error) {
-    next(error)
+   console.log(error)
+    
   }
   }
 
