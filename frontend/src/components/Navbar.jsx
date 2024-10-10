@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="flex justify-evenly items-center h-20 b border-b text-gray-600">
+    <header className="flex md:justify-evenly items-center md:h-20 h-14 flex-col md:flex-row sticky top-10 bg-red-50 z-20  rounded-full mx-8 md:mx-24">
       <h3 className="text-red-400">LOGO</h3>
       <nav>
-        <ul className="flex gap-12">
+        <ul className="flex gap-3 text-xs tracking-widest text-red-500 md:text-base md:gap-12">
           <li>
             <NavLink to="/"> Home</NavLink>
           </li>
