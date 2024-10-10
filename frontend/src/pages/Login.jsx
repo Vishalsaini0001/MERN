@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { AiFillOpenAI } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -13,30 +14,25 @@ const Login = () => {
 
     setUser({ ...user, [name]: value });
   };
-  const handlesubmit = async(e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/login',{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify(user)
-      })
-      if(response.ok){
-
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
         setUser({
           email: "",
           password: "",
-        })
-        alert("logged in")
-      } else{
-        alert("Failed register first!")
+        });
+       navigate("/")
       }
-        
-      
     } catch (error) {
-      console.log(error)
+      console.log("login error....",error);
     }
   };
   return (
@@ -79,7 +75,10 @@ const Login = () => {
         </div>
         <p className="mt-0 inline-block ">
           Don't have account!{" "}
-          <NavLink className="text-blue-400 tracking-wider  hover:underline" to="/register">
+          <NavLink
+            className="text-blue-400 tracking-wider  hover:underline"
+            to="/register"
+          >
             Sign Up
           </NavLink>{" "}
         </p>

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+
 const Navbar = () => {
   return (
     <header className="flex md:justify-evenly items-center md:h-20 h-14 flex-col md:flex-row   ">
