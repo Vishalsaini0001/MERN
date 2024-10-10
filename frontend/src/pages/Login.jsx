@@ -29,7 +29,7 @@ const Login = () => {
           email: "",
           password: "",
         });
-       navigate("/")
+       navigate('/')
       }
     } catch (error) {
       console.log("login error....",error);
