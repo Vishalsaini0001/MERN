@@ -1,6 +1,6 @@
 const express = require("express");
 const userModel = require("../models/user-model");
-const mssgeModel = require("../models/contact-model")
+const mssgeModel = require("../models/contact-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -29,9 +29,9 @@ const register = async (req, res) => {
     });
     const token = jwt.sign({ email: createduser.email }, "secret");
     res.cookie("token", token);
-    res.status(200).json({ CreatedSuccessfully: createduser });
+    res.status(200).json({ CreatedSuccessfully: createduser, token: token });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -46,29 +46,33 @@ const login = async (req, res) => {
       if (!result) {
         res.json({ message: "Incorrect Password" });
       } else {
-        res.json({ message: "Login succesfully" });
+        const token = jwt.sign({ email: user.email }, "secret");
+        res.cookie("token", token);
+        res
+          .status(200)
+          .json({
+            CreatedSuccessfully: "Login succesfully",
+            user,
+            token: token,
+          });
       }
     });
   } catch (error) {
-  
-   
-    next(error)
+    next(error);
   }
 };
-const contact = async (req,res)=>{
+const contact = async (req, res) => {
   try {
-    let {name,email,message} = req.body;
-     const msge =  await mssgeModel.create({
-          name,
-          email,
-          message,
-      })
-  res.json({message: msge})
-  
+    let { name, email, message } = req.body;
+    const msge = await mssgeModel.create({
+      name,
+      email,
+      message,
+    });
+    res.json({ message: msge });
   } catch (error) {
-   console.log(error)
-    
+    console.log(error);
   }
-  }
+};
 
 module.exports = { home, register, login, contact };

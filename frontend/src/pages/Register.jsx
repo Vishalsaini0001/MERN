@@ -27,6 +27,8 @@ const navigate = useNavigate();
         body: JSON.stringify(user),
       });
       if(response.ok){
+        const data = await response.json();
+        console.log("data is ",data)
         setUser({
           username: "",
           email: "",

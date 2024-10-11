@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiFillOpenAI } from "react-icons/ai";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const Login = () => {
 
     setUser({ ...user, [name]: value });
   };
+
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,14 +26,17 @@ const Login = () => {
         body: JSON.stringify(user),
       });
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+
         setUser({
           email: "",
           password: "",
         });
-       navigate('/')
+        navigate("/");
       }
     } catch (error) {
-      console.log("login error....",error);
+      console.log("login error....", error);
     }
   };
   return (
@@ -51,6 +55,7 @@ const Login = () => {
             className="bg-transparent px-14 py-3 border hover:border-b-2 text-center border-black rounded-md"
             name="email"
             placeholder="Enter email"
+            value={user.email}
           />
         </div>
         <div>
