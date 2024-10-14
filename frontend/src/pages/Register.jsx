@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { AiFillOpenAI } from "react-icons/ai";
-import { NavLink,useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Register = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { setLocalToken } = useAuth();
 
   const [user, setUser] = useState({
     username: "",
@@ -26,20 +28,21 @@ const navigate = useNavigate();
         },
         body: JSON.stringify(user),
       });
-      if(response.ok){
+      if (response.ok) {
         const data = await response.json();
-        console.log("data is ",data)
+        setLocalToken(data.token);
+       
         setUser({
           username: "",
           email: "",
           phone: "",
           password: "",
-        })
-        navigate("/login")
+        });
+        navigate("/login");
       }
-      console.log(response)
+      console.log(response);
     } catch (error) {
-      console.log("register error...",error);
+      console.log("register error...", error);
     }
   };
 
@@ -49,12 +52,7 @@ const navigate = useNavigate();
         onSubmit={handlesubmit}
         className="flex flex-col gap-4 justify-center items-center"
       >
-        <p
-          className="text-3xl pt-20 pb-3 tracking-wider"
-        
-        >
-          Register now!
-        </p>
+        <p className="text-3xl pt-20 pb-3 tracking-wider">Register now!</p>
         <div>
           <input
             className="bg-transparent px-14 py-3 border hover:border-b-2 text-center border-black rounded-md"

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { AiFillOpenAI } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setLocalToken } = useAuth();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -27,7 +30,7 @@ const Login = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
+        setLocalToken(data.token);
 
         setUser({
           email: "",
