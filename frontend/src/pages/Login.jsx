@@ -36,6 +36,7 @@ const Login = () => {
           email: "",
           password: "",
         });
+       
         navigate("/");
       }
     } catch (error) {

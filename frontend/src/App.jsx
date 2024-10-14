@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
 import Parallax from "./pages/Parallax";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/parallax" element={<Parallax />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
