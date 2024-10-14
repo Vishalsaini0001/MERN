@@ -75,4 +75,13 @@ const contact = async (req, res) => {
   }
 };
 
-module.exports = { home, register, login, contact };
+const user = async (req,res)=>{
+  try {
+    res.json({messgae:"message from user route"})
+    
+  } catch (error) {
+    console.log("error from user route",error)
+  }
+}
+
+module.exports = { home, register, login, contact ,user};
