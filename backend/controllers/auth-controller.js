@@ -27,7 +27,10 @@ const register = async (req, res) => {
       phone,
       password: hash_password,
     });
-    const token = jwt.sign({ email: createduser.email }, "secret");
+    const token = jwt.sign(
+      { email: createduser.email },
+      process.env.JWT_SECRET_KEY
+    );
     res.cookie("token", token);
     res.status(200).json({ CreatedSuccessfully: createduser, token: token });
   } catch (error) {
@@ -46,15 +49,16 @@ const login = async (req, res) => {
       if (!result) {
         res.json({ message: "Incorrect Password" });
       } else {
-        const token = jwt.sign({ email: user.email }, "secret");
+        const token = jwt.sign(
+          { email: user.email },
+          process.env.JWT_SECRET_KEY
+        );
         res.cookie("token", token);
-        res
-          .status(200)
-          .json({
-            CreatedSuccessfully: "Login succesfully",
-            user,
-            token: token,
-          });
+        res.status(200).json({
+          CreatedSuccessfully: "Login succesfully",
+          user,
+          token: token,
+        });
       }
     });
   } catch (error) {
@@ -75,13 +79,13 @@ const contact = async (req, res) => {
   }
 };
 
-const user = async (req,res)=>{
+const user = async (req, res) => {
   try {
-    res.json({messgae:"message from user route"})
-    
+    const data = req.user;
+    res.json({ messgae: data });
   } catch (error) {
-    console.log("error from user route",error)
+    console.log("error from user route", error);
   }
-}
+};
 
-module.exports = { home, register, login, contact ,user};
+module.exports = { home, register, login, contact, user };
