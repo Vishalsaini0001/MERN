@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { IoIosSend } from "react-icons/io";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
+  const { userdata } = useAuth();
+  console.log(userdata);
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -17,7 +21,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+
     try {
       const response = await fetch("http://localhost:3000/api/contact", {
         method: "POST",
@@ -54,7 +58,7 @@ const Contact = () => {
             type="text"
             placeholder="John Doe"
             name="name"
-            value={user.name}  
+            value={user.name}
             onChange={handleChange}
           />
           <label className='className="text-3x tracking-wider' htmlFor="email">
@@ -65,10 +69,13 @@ const Contact = () => {
             type="text"
             placeholder="example@gmail.com"
             name="email"
-            value={user.email}  
+            value={user.email}
             onChange={handleChange}
           />
-          <label className='className="text-3x tracking-wider' htmlFor="message">
+          <label
+            className='className="text-3x tracking-wider'
+            htmlFor="message"
+          >
             Enter Message
           </label>
           <textarea
@@ -76,7 +83,7 @@ const Contact = () => {
             name="message"
             cols="20"
             rows="3"
-            value={user.message}  
+            value={user.message}
             onChange={handleChange}
           ></textarea>
           <button
