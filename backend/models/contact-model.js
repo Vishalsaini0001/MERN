@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const contactSchema = mongoose.Schema({
+const contactSchema = new mongoose.Schema({
     name: String,
     email:{
         type:String,
