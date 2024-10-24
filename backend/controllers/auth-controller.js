@@ -84,7 +84,7 @@ const user = async (req, res) => {
     const data = req.user;
     res.json({ messgae: data });
   } catch (error) {
-    console.log("error from user route", error);
+    console.log("error from route user", error);
   }
 };
 
