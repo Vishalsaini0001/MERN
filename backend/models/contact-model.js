@@ -10,7 +10,7 @@ const contactSchema = new mongoose.Schema({
         type: String,
         required:true
     }
-});
+})
 
 const message = mongoose.model("message", contactSchema)
 module.exports = message;
