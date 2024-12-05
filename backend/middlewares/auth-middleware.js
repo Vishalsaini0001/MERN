@@ -17,7 +17,7 @@ const authmiddleware = async (req, res, next) => {
     const user = await userModel.findOne({ email: decorded.email });
 
     req.user = user;
-    next()
+    next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorised!" });
   }
