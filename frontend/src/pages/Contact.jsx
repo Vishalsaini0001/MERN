@@ -42,7 +42,7 @@ const Contact = () => {
         alert("Failed to send!");
       }
     } catch (error) {
-      console.log("message error..", error)
+      console.log("message error..", error);
     }
   };
 
