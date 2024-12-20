@@ -16,7 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/api", router);
-app.use(errorhandler)
+app.use(errorhandler);
  
 conectDB().then(() => {
   app.listen(process.env.PORT, () => {
